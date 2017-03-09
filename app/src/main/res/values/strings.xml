@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Homework2-370</string>
+    <string name="search_button_text">Search</string>
+    <string name="search_field_hint">Enter search terms...</string>
+</resources>

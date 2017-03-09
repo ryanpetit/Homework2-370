@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_api_url">http://api.yummly.com/v1/api/recipes</string>
+    <string name="api_key">ec3e34e0bb6801670dbd3dbd02ce7608</string>
+    <string name="app_id">4911b643</string>
+</resources>
