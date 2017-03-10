@@ -15,6 +15,7 @@ public class RecipeParser {
             JSONArray matches = response.getJSONArray("matches");
             JSONObject recipe = matches.getJSONObject(0);
 
+            model = new RecipeModel();
             model.setRecipeName(recipe.getString("recipeName"));
         } catch (JSONException e) {
             // do something useful with exception

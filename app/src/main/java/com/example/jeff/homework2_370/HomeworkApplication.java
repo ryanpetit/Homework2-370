@@ -13,11 +13,13 @@ public class HomeworkApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
 
+        initialize();
     }
 
     private void initialize() {
-        instance = this;
+
 
         appId = getString(R.string.app_id);
         apiKey = getString(R.string.api_key);

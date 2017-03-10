@@ -19,13 +19,13 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, String, RecipeModel
     @Override
     protected RecipeModel doInBackground(String... params) {
 
-
         return null;
     }
 
     @Override
     protected void onPostExecute(RecipeModel recipeModel) {
         super.onPostExecute(recipeModel);
+
     }
 
     public void setRecipeCallbackListener(RecipeCallbackListener recipeCallbackListener) {
