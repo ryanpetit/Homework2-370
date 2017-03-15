@@ -1,5 +1,6 @@
 package com.example.jeff.homework2_370.network;
 
+import android.app.DownloadManager;
 import android.os.AsyncTask;
 
 import com.example.jeff.homework2_370.HomeworkApplication;
@@ -18,7 +19,25 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, String, RecipeModel
 
     @Override
     protected RecipeModel doInBackground(String... params) {
-
+        String searchParams = params[0];
+        OkHttpClient client = new OkHttpClient();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(HomeworkApplication.getInstance().getBaseApiUrl()).newBuilder();
+        urlBuilder.addQueryParameter("_app_key",HomeworkApplication.getInstance().getApiKey());
+        urlBuilder.addQueryParameter("_app_id",HomeworkApplication.getInstance().getAppId());
+        urlBuilder.addQueryParameter("your_search_parameters", searchParams);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+            if (response != null) {
+                return RecipeParser.recipeFromJson(response.body().toString());
+            }
+        }
+        catch (IOException e)
+        {
+            // do something with exception
+        }
         return null;
     }
 
