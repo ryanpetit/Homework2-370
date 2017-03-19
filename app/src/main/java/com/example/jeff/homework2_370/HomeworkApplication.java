@@ -3,7 +3,8 @@ package com.example.jeff.homework2_370;
 import android.app.Application;
 
 
-public class HomeworkApplication extends Application {
+public class HomeworkApplication extends Application
+{
     private static HomeworkApplication instance;
 
     private String baseApiUrl;
@@ -11,14 +12,16 @@ public class HomeworkApplication extends Application {
     private String appId;
 
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
         instance = this;
 
         initialize();
     }
 
-    private void initialize() {
+    private void initialize()
+    {
 
 
         appId = getString(R.string.app_id);
