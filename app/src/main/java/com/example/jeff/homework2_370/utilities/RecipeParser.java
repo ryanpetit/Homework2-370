@@ -7,17 +7,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RecipeParser {
-    public static final RecipeModel recipeFromJson(String jsonString) {
+public class RecipeParser
+{
+    public static final RecipeModel recipeFromJson(String jsonString)
+    {
         RecipeModel model = null;
-        try {
+        try
+        {
             JSONObject response = new JSONObject(jsonString);
             JSONArray matches = response.getJSONArray("matches");
             JSONObject recipe = matches.getJSONObject(0);
+            JSONArray smallImageUrls = recipe.getJSONArray("smallImageUrls");
+            String recipeImageUrl = smallImageUrls.toString(0);
+
 
             model = new RecipeModel();
             model.setRecipeName(recipe.getString("recipeName"));
-        } catch (JSONException e) {
+            model.setRecipeImageUrl(recipeImageUrl);
+        }
+        catch (JSONException e)
+        {
             // do something useful with exception
         }
         return model;
