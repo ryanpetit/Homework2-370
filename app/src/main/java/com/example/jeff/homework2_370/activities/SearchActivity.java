@@ -20,11 +20,34 @@ public class SearchActivity extends AppCompatActivity {
     private ImageView recipeThumbnail;
     private EditText searchEditText;
     private Button searchButton;
+    private RecipeCallbackListener recipeCallbackListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        recipeName = (TextView)findViewById(R.id.recipe_name);
+        searchButton = (Button)findViewById(R.id.search_button);
+        recipeThumbnail = (ImageView)findViewById(R.id.recipe_thumbnail);
+        searchEditText = (EditText)findViewById(R.id.search_edit_text);
+
+        searchButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onCLick(View v){
+                @Override
+                          public void onClick(View v) {
+                    recipeCallbackListener = new RecipeCallbackListener() {
+                        @Override
+                        public void onRecipeCallback(RecipeModel recipeModel) {
+                            recipeName.setText(recipeModel.getRecipeName());
+                        }
+                    };
+                    RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
+                    task.setRecipeCallbackListener(recipeCallbackListener);
+                    task.execute(searchEditText.getText().toString());
+                }
+             });
     }
 }
