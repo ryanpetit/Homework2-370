@@ -26,9 +26,7 @@ public class HomeworkApplication extends Application {
         baseApiUrl = getString(R.string.base_api_url);
     }
 
-    public static HomeworkApplication getInstance() {
-        return instance;
-    }
+    public static HomeworkApplication getInstance() { return instance; }
 
     public String getBaseApiUrl() {
         return baseApiUrl;
