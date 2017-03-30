@@ -1,5 +1,6 @@
 package com.example.jeff.homework2_370.activities;
 
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,11 +21,34 @@ public class SearchActivity extends AppCompatActivity {
     private ImageView recipeThumbnail;
     private EditText searchEditText;
     private Button searchButton;
+    private RecipeCallbackListener RecipeCallbackListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        recipeName = (TextView)findViewById(R.id.recipe_name);
+        recipeThumbnail = (ImageView)findViewById(R.id.recipe_thumbnail);
+        searchEditText = (EditText)findViewById(R.id.search_edit_text);
+        searchButton = (Button)findViewById(R.id.my_search_button);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeCallbackListener = new RecipeCallbackListener() {
+                    @Override
+                    public void onRecipeCallback(RecipeModel recipeModel) {
+                        recipeName.setText(recipeModel.getRecipeName());
+                    }
+                };
+                RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
+                task.setRecipeCallbackListener(RecipeCallbackListener);
+                task.execute(searchEditText.getText().toString());
+
+            }
+        });
+
+
 
     }
 }
